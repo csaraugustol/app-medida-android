@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AppMedida</string>
+    <string name="app_name">Medida Certa</string>
+    <string name="txtBoasVindas">Olá, seja bem vindo!</string>
 </resources>
