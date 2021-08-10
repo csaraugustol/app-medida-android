@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Medida Certa</string>
     <string name="txtBoasVindas">Olá, seja bem vindo!</string>
+    <string name="txrAppTitle">APP IMC</string>
+    <string name="lblNome">Nome</string>
+    <string name="btnCalcular">Calcular</string>
+    <string name="lblAltura">Altura</string>
+    <string name="lblPeso">Peso</string>
+    <string name="lblIdade">Idade</string>
 </resources>
