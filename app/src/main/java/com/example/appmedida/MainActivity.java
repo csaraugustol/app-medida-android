@@ -30,17 +30,24 @@ Button btnCalc;
         campoIdade = findViewById(R.id.editIdade);
 
         campoAltura = findViewById(R.id.edtDecAltura);
-        
+
         campoPeso = findViewById(R.id.edtDecPeso);
 
         btnCalc = findViewById(R.id.btnCalcular);
 
-        Pessoa p = new Pessoa();
+
+
 
 
         btnCalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                double dAltura = new Double(campoAltura.getText().toString());
+                double dPeso = new Double(campoPeso.getText().toString());
+
+                Pessoa p = new Pessoa();
+                p.setPeso(dPeso);
+                p.setAltura(dAltura);
 
 
                 Toast.makeText(getApplicationContext(), "Olá "+ campoNome.getText() + ", o seu resultado é: "
