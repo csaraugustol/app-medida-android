@@ -2,6 +2,8 @@ package com.example.appmedida;
 
 import android.text.Editable;
 
+import java.text.DecimalFormat;
+
 public class Pessoa {
 
     private String nome;
@@ -20,7 +22,8 @@ public class Pessoa {
     }
 
     public double imc(){
-        return peso/(altura*altura);
+
+        return  peso/(altura*altura);
     }
 
     public String resultado(){

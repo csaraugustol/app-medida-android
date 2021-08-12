@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.text.DecimalFormat;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,38 +22,68 @@ Button btnCalc;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DecimalFormat form = new DecimalFormat("0.00");
+        //Busca os campos a serem utilizados
+        binding();
 
+
+        btnCalc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+
+                    if (Integer.parseInt(campoIdade.getText().toString()) < 18){
+                        Snackbar.make(view,"Pessoas menor de idade. Não é possível calcular.", Snackbar.LENGTH_SHORT ).show();
+
+                        return;
+                    }
+
+                }catch (NumberFormatException e){
+
+                    Snackbar.make(view,"Digite uma idade correta.", Snackbar.LENGTH_SHORT ).show();
+                    campoIdade.requestFocus();
+
+                    return;
+                }
+
+
+                Pessoa p = new Pessoa();
+                p.setPeso(Double.parseDouble(campoAltura.getText().toString()));
+                p.setAltura(Double.parseDouble(campoPeso.getText().toString()));
+
+
+                Toast.makeText(getApplicationContext(), "Olá "+ campoNome.getText() + ", o seu IMC é "
+                                + p.imc() + " e sua categoria é: "+ p.resultado(),
+                        Toast.LENGTH_LONG).show();
+
+                /*campoNome.setText("");
+                campoAltura.setText("");
+                campoIdade.setText("");
+                campoPeso.setText("");*/
+
+                limparCampos(campoNome, campoAltura, campoIdade, campoPeso);
+
+            }
+        });
+    }
+
+    private void limparCampos(EditText ... campos){
+
+        for (EditText et: campos){
+            et.setText("");
+        }
+
+    }
+
+    private void binding() {
         campoNome = findViewById(R.id.edtNome);
-       // campoNome.setText("Cesar");
 
-        campoIdade = findViewById(R.id.editIdade);
+        campoIdade = findViewById(R.id.edtIdade);
 
         campoAltura = findViewById(R.id.edtDecAltura);
 
         campoPeso = findViewById(R.id.edtDecPeso);
 
         btnCalc = findViewById(R.id.btnCalcular);
-
-
-
-
-
-        btnCalc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                double dAltura = new Double(campoAltura.getText().toString());
-                double dPeso = new Double(campoPeso.getText().toString());
-
-                Pessoa p = new Pessoa();
-                p.setPeso(dPeso);
-                p.setAltura(dAltura);
-
-
-                Toast.makeText(getApplicationContext(), "Olá "+ campoNome.getText() + ", o seu resultado é: "
-                        + p.resultado(),
-                        Toast.LENGTH_LONG).show();
-            }
-        });
     }
 }
